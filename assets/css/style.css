@@ -1,6 +1,6 @@
 :root {
     --primary: #07292e;
-    --secondary: #16a0b6;
+    --secondary: #1eb9d1;
     --body-bg: #1f1f1f;
     --dark-transparent: #1f1f1fc4;
     --text-primary: #eee;
@@ -19,7 +19,8 @@ section {
     margin: 0;
     padding: 0;
 }
-h2 {
+h1, h2, h3, h4, h5, h6  {
+    font-weight: 600;
     text-align: center;
 }
 a {
@@ -28,44 +29,30 @@ a {
     transition: 0.3s ease-in-out;
 }
 a:hover {
-    color: #1eb9d1;
+    color: var(--secondary);
 }
 p {
     color: var(--text-light);
-}
-.rounded-1 {
-    border-radius: 4px;
-}
-.rounded-2 {
-    border-radius: 8px;
-}
-.rounded-3 {
-    border-radius: 12px;
-}
-.rounded-4 {
-    border-radius: 16px;
-}
-ul {
-    margin-left: 0;
-    padding-left: 0;
 } 
-.list-unstyled {
+ul {
     list-style: none;
     margin-left: 0;
     padding-left: 0;
-}
-.social-links{
+}  
+.social-links {
     display: flex;
     align-items: center;
     justify-content: end;
+}
+.fab, .fa-brands {
+    font-size: 20px;
+    padding: 8px;
 }
 .fa-brands.fa-github, 
 .fa-arrow-up-right-from-square {
     color: #c3964e;
     filter: drop-shadow(1px 1px 0px 6px #916217);
-    font-size: 20px;
-    padding: 8px;
-}
+} 
 section {
     padding: 50px;
 }
@@ -91,10 +78,11 @@ section {
     margin-top: 20px;
 } 
 .image-wrapper {
-    flex: 2;
+    flex: 1;
+    padding: 20px;
 }
 .about-box {
-    flex: 3;
+    flex: 4;
     padding: 20px;
     background: #1f1f1fc4;
     box-shadow: inset 0 0 2px 0px #cd8339;
@@ -107,7 +95,6 @@ section {
 .image-wrapper .image-container img {
     box-shadow: 0 0 10px 0 #242424;
     width: auto;
-    height: 240px;
     border-radius: 50%;
     aspect-ratio: 1/1;
     object-fit: cover;
@@ -127,18 +114,21 @@ section {
 .portfolio-item {
     width: calc(33.333% - 20px);
     margin-bottom: 20px;
-    margin: 0 5px;
+    margin: 5px 5px;
     overflow: hidden;
     border-radius: 8px;
     box-shadow: inset 0 0 3px 0 #2091b3bf; 
+    perspective: 1000px;
 }
 .portfolio-wrapper {
     position: relative;
     overflow: hidden;
+    margin-bottom: 20px;
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
+    transform-style: preserve-3d;
 }
 .portfolio-image { 
     overflow: hidden;
@@ -147,24 +137,19 @@ section {
     transition: transform 0.3s ease-in-out;
     max-width: 100%;
 } 
-.portfolio-wrapper:hover .portfolio-image img {
-    transform: scale(1.05);
-}
 
 .portfolio-description {
-
+    width: 100%;
+    height: 100%;
+    border-radius: 0 0 8px 8px;
+    transform-origin: bottom;
+    backface-visibility: hidden;
 }
 .desciption-top{
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-.description-title{
-
-}
-.description-source{
-
-}
+} 
 .desciption-bottom p {
     display: -webkit-box;
     -webkit-line-clamp: 3;
@@ -175,27 +160,149 @@ section {
     -moz-line-clamp: 3;
     -moz-box-orient: vertical;
 }
-.contact-left{
 
+.portfolio-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 220px;
+    height: 223px;
+    border-radius: 50%;
+    background: rgb(39 189 85 / 18%);
+    pointer-events: none;
+    filter: blur(108px);
+    z-index: 0;
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
 }
-.contact-info-container{
 
+.portfolio-wrapper:hover .portfolio-hover {
+    opacity: 1;
 }
-.contact-text{
 
+
+/* ============================
+        SECTION _CONTACTS
+=============================== */
+.svg-background-2 {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpolygon points='0,100 100,100 100,80 0,30' fill='%2307292e'/%3E%3C/svg%3E");
+}  
+.contact-left {
+    flex: 2;
+} 
+.contact-right {
+    flex: 1;
+} 
+.contact-text {
+    flex: 1;
+    padding-right: 20px;
+} 
+.contact-links ul {
+    display: flex;
+    padding: 0;
+} 
+.contact-links li {
+    margin-right: 10px;
+} 
+.contact-links a {
+    color: var(--secondary);
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+} 
+.contact-links a:hover {
+    color: #1eb9d1;
+} 
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-.contact-links{
-
+ 
+@media (max-width: 991px) {
+ 
+    .about-box {
+        position: relative;
+        margin-top: 50px;
+    }
+    .image-wrapper.wrapper-desktop {
+        display: none;
+    }
+    .hero-title {
+        position: absolute;
+        z-index: 1;
+        right: 0%;
+        bottom: 100%;
+        font-size: 30px;
+    }
+    .image-wrapper-tablet .image-container {
+        max-width: 320px;
+        float: left;
+        margin: -65px 25px 0px 0px;
+    }
+    .portfolio-item {
+        width: calc(50% - 20px);
+    }
 }
-.fa-linkedin{
-
+@media (max-width: 768px) {
+    .hero-title { 
+        z-index: 3;
+        left: 78px;
+        top: 137px;
+        text-shadow: 2px 2px 15px #111;
+    }
 }
-.fa-facebook{
-
-}
-.fa-instagram{
-
-}
-.contact-right{
-
+@media (max-width: 650px) {
+    .row {
+        margin-top: 0;
+    }
+    .image-wrapper-tablet .image-container {
+        max-width: none;
+        float: none;
+        margin: 0;
+    }
+    .about-box {
+        margin-top: 0;
+    }
+    .portfolio-item {
+        width: 100%;
+        overflow: hidden;
+        box-shadow: 0 0 7px 0 #1d4854bf;
+        margin: 20px 0;
+    }
+    .portfolio-wrapper {
+        margin-bottom: 0;
+        padding: 0;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .portfolio-description {
+        padding: 0 20px;
+    }
+    .hero-title {
+        left: 38px;
+        top: 20px;
+        text-shadow: 2px 2px 15px #111;
+        font-size: 35px;
+    }
+    .list-unstyled.social-links {
+        justify-content: center;
+    }
+    .fab, .fa-brands, .fa-arrow-up-right-from-square {
+        font-size: 30px;
+        padding: 10px;
+    }
+    section {
+        padding: 20px 0;
+    }
+    h2 {
+        text-align: center;
+    }
+    #section-contacts .container .row {
+        flex-direction: column;
+    }
+    .contact-links ul {
+        margin: 35px 0;
+        justify-content: center;
+    }
 }
